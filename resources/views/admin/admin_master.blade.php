@@ -8,6 +8,9 @@
     <meta name="author" content="">
     <link rel="icon" href="{{asset('BackEnd/images/favicon.ico')}}">
     <link href="https://cdn.jsdelivr.net/npm/@mdi/font/css/materialdesignicons.min.css" rel="stylesheet">
+    <!-- font awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+
 
 
     <title>Admin - Dashboard</title>
@@ -19,6 +22,7 @@
     <link rel="stylesheet" href="{{asset('BackEnd/css/style.css')}}">
     <link rel="stylesheet" href="{{asset('BackEnd/css/skin_color.css')}}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" integrity="sha512-3pIirOrwegjM6erE5gPSwkUzO+3cTjpnV9lexlNZqvupR64iZBnOOTiiLPb9M36zpMScbmUNIcHUqKD47M719g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
 
 </head>
 
@@ -57,11 +61,24 @@
 <script src="{{ asset('../assets/vendor_components/apexcharts-bundle/irregular-data-series.js') }}"></script>
 <script src="{{ asset('../assets/vendor_components/apexcharts-bundle/dist/apexcharts.js') }}"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="{{ asset('../assets/vendor_components/datatable/datatables.min.js') }}"></script>
+<script src="{{ asset('BackEnd/js/pages/data-table.js') }}"></script>
+
+<!-- /// Tgas Input Script -->
+<script src="{{ asset('../assets/vendor_components/bootstrap-tagsinput/dist/bootstrap-tagsinput.js') }}"></script>
+
+<!-- // CK EDITOR  -->
+<script src="{{ asset('../assets/vendor_components/ckeditor/ckeditor.js') }}"></script>
+<script src="{{ asset('../assets/vendor_plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.js') }}"></script>
+<script src="{{ asset('BackEnd/js/pages/editor.js') }}"></script>
+
 
 <!-- Sunny Admin App -->
-<script src="{{asset('BackEnd/js/template.js')}}"></script>
 <script src="{{asset('BackEnd/js/pages/dashboard.js')}}"></script>
+<script src="{{asset('BackEnd/js/template.js')}}"></script>
 
+
+<!-- Toaster -->
 <script>
     @if(Session::has('message'))
     var   type = "{{ Session::get('alert-type', 'info') }}"
@@ -84,6 +101,16 @@
     }
     @endif
 </script>
+<!-- End Toaster -->
+
+<!-- sweet alert -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+
+<script src="{{ asset('BackEnd/js/code.js') }}"></script>
+<!-- End sweet alert -->
+
+
 
 </body>
 </html>

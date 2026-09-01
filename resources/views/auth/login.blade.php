@@ -21,8 +21,8 @@
                         <h4 class="">Sign in</h4>
                         <p class="">Hello, Welcome to your account.</p>
                         <div class="social-sign-in outer-top-xs">
-                            <a href="#" class="facebook-sign-in"><i class="fa fa-facebook"></i> Sign In with Facebook</a>
-                            <a href="#" class="twitter-sign-in"><i class="fa fa-twitter"></i> Sign In with Twitter</a>
+                            <a href="{{ route('facebook.login') }}" class="facebook-sign-in"><i class="fa-brands fa-facebook fa-xl"></i> Sign In with Facebook</a>
+                            <a href="{{ route('google.login') }}" class="google-sign-in"><img src="{{ asset('frontEnd/assets/images/google-logo-colour.svg') }}">Sign In with Google</a>
                         </div>
 
 
@@ -79,9 +79,9 @@
 
                             <div class="form-group">
                                 <label class="info-title" for="exampleInputEmail2">Email Address <span>*</span></label>
-                                <input type="email" id="email" name="email" class="form-control unicase-form-control text-input" >
+                                <input type="regemail" id="regemail" name="regemail" class="form-control unicase-form-control text-input" >
                                 <!-- Display specific error for email -->
-                                @error('email')
+                                @error('regemail')
                                 <div style="color: red;">{{ $message }}</div>
                                 @enderror
                             </div>
@@ -130,4 +130,13 @@
             @include('frontend.body.brands')
             <!-- ============================================== BRANDS CAROUSEL : END ============================================== -->	</div><!-- /.container -->
     </div><!-- /.body-content -->
+
+    <script>
+        if (window.location.hash && window.location.hash == '#_=_') {
+            history.replaceState
+                ? history.replaceState(null, null, window.location.href.split('#')[0])
+                : window.location.hash = '';
+        }
+    </script>
+
 @endsection

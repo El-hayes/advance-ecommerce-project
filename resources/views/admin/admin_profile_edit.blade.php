@@ -45,7 +45,7 @@
 
                                                 <div class="form-group col-md-6">
                                                     <div class="controls">
-                                                         <img  id="showImage" src="{{ (!empty($editData->profile_photo_path)) ? url('upload/admin_images/'.$editData->profile_photo_path) : url('upload/no_image.jpg') }}" alt="profile_img" style="width: 100px; height: 100px">
+                                                         <img  id="showImage" src="{{ (!empty($editData->profile_photo_path)) ? asset($editData->profile_photo_path) : url('upload/no_image.jpg') }}" alt="profile_img" style="width: 100px; height: 100px">
                                                     </div>
                                                 </div>
                                             </div>
@@ -54,7 +54,7 @@
                                         </div>
                                     </div>
                                     <div class="text-xs-right">
-                                        <input type="submit" class="btn btn-rounded btn-info" value="Update">
+                                        <input type="submit" class="btn btn-rounded btn-primary" value="Update">
                                     </div>
                                 </form>
 
