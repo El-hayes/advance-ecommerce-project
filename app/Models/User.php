@@ -6,6 +6,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Cache;
 use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Sanctum\HasApiTokens;
@@ -30,6 +31,10 @@ class User extends Authenticatable
         'email',
         'phone',
         'password',
+        'last_seen',
+        'facebook_id',
+        'profile_photo_path',
+        'google_id',
     ];
 
     /**
@@ -58,6 +63,11 @@ class User extends Authenticatable
      *
      * @return array<string, string>
      */
+
+
+
+
+
     protected function casts(): array
     {
         return [
@@ -65,4 +75,18 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+
+
+    // check user is online
+    public function userOnline()
+    {
+        return  Cache::has('user-is-online' . $this->id);
+    } // End Method
+
+
+
+
+
+
 }

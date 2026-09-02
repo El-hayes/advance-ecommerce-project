@@ -9,5 +9,5 @@
             </li>
         </ul>
     </div>
-    &copy; 2024 <a href="#">Easy Shop</a>. All Rights Reserved.
+    &copy; {{ date('Y') }} <a href="#">Easy Shop</a>. All Rights Reserved.
 </footer>

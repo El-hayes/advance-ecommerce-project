@@ -221,7 +221,7 @@ jQuery(".brand-slider").owlCarousel({
     pagination: false,
     paginationSpeed : 400,
     navigationText: ["", ""]
-});    
+});
 jQuery("#advertisement").owlCarousel({
     items : 1,
     itemsDesktopSmall :[979,2],
@@ -231,7 +231,7 @@ jQuery("#advertisement").owlCarousel({
     pagination: true,
     paginationSpeed : 400,
     navigationText: ["", ""]
-});    
+});
 
 
 
@@ -311,7 +311,7 @@ jQuery(function(){
         pagination: true
     });
 
-  
+
 });
 
 
@@ -319,7 +319,7 @@ jQuery(function(){
 
 
 /*===================================================================================*/
-/*  WOW 
+/*  WOW
 /*===================================================================================*/
 
 jQuery(function () {
@@ -328,11 +328,44 @@ jQuery(function () {
 
 
 /*===================================================================================*/
-/*  TOOLTIP 
+/*  TOOLTIP
 /*===================================================================================*/
-jQuery("[data-toggle='tooltip']").tooltip(); 
+jQuery("[data-toggle='tooltip']").tooltip();
+
+    const site_url = "http://localhost:8000/";
+
+    $("body").on("keyup", "#search", function(){
+        let text = $('#search').val();
+        // console.log(text);
+
+        if (text.length > 0){
+            $.ajax({
+                data: {search: text},
+                type: "POST",
+                url: site_url + "search-product",
+
+                beforeSend: function(request){
+                    request.setRequestHeader('X-CSRF-TOKEN', $('meta[name="csrf-token"]').attr('content'));
+                },
+
+                success: function(result){
+                    // console.log(result);
+                    $("#searchProducts").html(result);
+                }
 
 
+            }); // end ajax
+
+        } // end if
+
+        if (text.length < 1){
+            $("#searchProducts").html("");
+        }
+
+
+
+
+    });
 
 
 })

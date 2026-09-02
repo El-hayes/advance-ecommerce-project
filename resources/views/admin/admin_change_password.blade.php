@@ -68,7 +68,7 @@
                                     </div>
                                 </div>
                                 <div class="text-xs-right">
-                                    <input type="submit" class="btn btn-rounded btn-info" value="Update">
+                                    <input type="submit" class="btn btn-rounded btn-primary" value="Update">
                                 </div>
                             </form>
 

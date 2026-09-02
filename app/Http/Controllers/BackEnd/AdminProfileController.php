@@ -4,6 +4,7 @@ namespace App\Http\Controllers\BackEnd;
 
 use App\Http\Controllers\Controller;
 use App\Models\Admin;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -12,30 +13,30 @@ class AdminProfileController extends Controller
 {
     // view profile
     public function adminProfile(){
-        $adminData = Admin::find(1);
+        $adminData = Auth::user();
         return view('admin.admin_profile_view', compact('adminData'));
     }
 
     // admin profile edit
     public function adminProfileEdit(){
-        $editData = Admin::find(1);
+        $editData = Auth::user();
 
         return view('admin.admin_profile_edit', compact('editData'));
     }
 
     // admin profile store
     public function adminProfileStore(Request $request){
-        $storeData = Admin::find(1);
+        $storeData = Auth::user();
 
         $storeData->name = $request->username;
         $storeData->email = $request->email;
 
         if ($request->file('profile_image')) {
             $file = $request->file('profile_image');
-            @unlink(public_path('upload/admin_images/' . $storeData->profile_photo_path));
+            @unlink(public_path($storeData->profile_photo_path));
             $filename = date('YmdHi') . '.' . $file->getClientOriginalName();
             $file->move('upload/admin_images/', $filename);
-            $storeData->profile_photo_path = $filename;
+            $storeData->profile_photo_path = 'upload/admin_images/' . $filename;
 
         }
         $storeData->save();
@@ -68,10 +69,10 @@ class AdminProfileController extends Controller
 
 
 
-        $hashPassword = Admin::find(1)->password;
+        $hashPassword = Auth::user()->password;
         if (Hash::check($request->current_password, $hashPassword))
         {
-            $admin = Admin::find(1);
+            $admin = Auth::user();
             $admin->password = Hash::make($request->password);
             $admin->save();
             Auth::logout();
@@ -82,7 +83,15 @@ class AdminProfileController extends Controller
             return redirect()->back()->with('error' , 'The provided password does not match your current password');
         }
 
-    }
+    }  // End Method
+
+
+    public function allUsers()
+    {
+        $users = User::latest()->get();
+
+        return view('backend.user.all_users', compact('users'));
+    } // End function
 
 
 }
