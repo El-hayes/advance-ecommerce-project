@@ -35,7 +35,7 @@
     .fb   { background:#1877f2; }
     .x    { background:#000; }
     .pin  { background:#e60023; }
-    .in   { background:#0a66c2; }
+    /*.in   { background:#0a66c2; }*/
     .wa   { background:#25d366; }
     .mail { background:#8c8c8c; }
 

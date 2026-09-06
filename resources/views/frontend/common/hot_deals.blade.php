@@ -80,9 +80,12 @@ $hot_deals = App\Models\Product::where('hot_deals', 1)->where('discount_price', 
                         <div class="action">
                             <div class="add-cart-button btn-group">
                                 <button data-toggle="modal" data-target="#exampleModal" class="btn btn-primary icon" type="button" title="Add Cart"
-                                        id="{{ $product->id }}" onclick="productView(this.id)" > <i class="fa fa-shopping-cart"></i> </button>
+                                        id="{{ $product->id }}" onclick="productView(this.id)" {{ $product->product_qty <= 0 ? 'disabled' : '' }}> <i class="fa fa-shopping-cart"></i>
+                                </button>
                                 <button data-toggle="modal" data-target="#exampleModal" class="btn btn-primary cart-btn" type="button"
-                                        id="{{ $product->id }}" onclick="productView(this.id)">Add to cart</button>
+                                        id="{{ $product->id }}" onclick="productView(this.id)" {{ $product->product_qty <= 0 ? 'disabled' : '' }}>
+                                    Add to cart
+                                </button>
                             </div>
                         </div>
                         <!-- /.action -->

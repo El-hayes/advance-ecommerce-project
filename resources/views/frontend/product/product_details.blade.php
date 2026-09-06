@@ -5,6 +5,7 @@
 @endsection
 
 @section('content')
+
     {{--    for rating stars review--}}
     <style>
         .checked {

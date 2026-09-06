@@ -357,7 +357,7 @@
                                                             <ul class="list-unstyled">
                                                                 <li class="add-cart-button btn-group">
                                                                     <button data-toggle="modal" data-target="#exampleModal" class="btn btn-primary icon" type="button" title="Add Cart"
-                                                                            id="{{ $product->id }}" onclick="productView(this.id)" > <i class="fa fa-shopping-cart"></i> </button>
+                                                                            id="{{ $product->id }}" onclick="productView(this.id)" {{ $product->product_qty <= 0 ? 'disabled' : '' }}> <i class="fa fa-shopping-cart"></i> </button>
                                                                     <button class="btn btn-primary cart-btn" type="button">Add to cart</button>
                                                                 </li>
 
@@ -466,7 +466,7 @@
                                                             <ul class="list-unstyled">
                                                                 <li class="add-cart-button btn-group">
                                                                     <button data-toggle="modal" data-target="#exampleModal" class="btn btn-primary icon" type="button" title="Add Cart"
-                                                                            id="{{ $product->id }}" onclick="productView(this.id)" > <i class="fa fa-shopping-cart"></i> </button>
+                                                                            id="{{ $product->id }}" onclick="productView(this.id)" {{ $product->product_qty <= 0 ? 'disabled' : '' }}> <i class="fa fa-shopping-cart"></i> </button>
                                                                     <button class="btn btn-primary cart-btn" type="button">Add to cart</button>
                                                                 </li>
 
@@ -603,7 +603,7 @@
                                                 <ul class="list-unstyled">
                                                     <li class="add-cart-button btn-group">
                                                         <button data-toggle="modal" data-target="#exampleModal" class="btn btn-primary icon" type="button" title="Add Cart"
-                                                                id="{{ $product->id }}" onclick="productView(this.id)" > <i class="fa fa-shopping-cart"></i> </button>
+                                                                id="{{ $product->id }}" onclick="productView(this.id)" {{ $product->product_qty <= 0 ? 'disabled' : '' }}> <i class="fa fa-shopping-cart"></i> </button>
                                                         <button class="btn btn-primary cart-btn" type="button">Add to cart</button>
                                                     </li>
 
@@ -700,7 +700,7 @@
                                                 <ul class="list-unstyled">
                                                     <li class="add-cart-button btn-group">
                                                         <button data-toggle="modal" data-target="#exampleModal" class="btn btn-primary icon" type="button" title="Add Cart"
-                                                                id="{{ $product->id }}" onclick="productView(this.id)" > <i class="fa fa-shopping-cart"></i> </button>
+                                                                id="{{ $product->id }}" onclick="productView(this.id)" {{ $product->product_qty <= 0 ? 'disabled' : '' }}> <i class="fa fa-shopping-cart"></i> </button>
                                                         <button class="btn btn-primary cart-btn" type="button">Add to cart</button>
                                                     </li>
 
@@ -798,7 +798,7 @@
                                                 <ul class="list-unstyled">
                                                     <li class="add-cart-button btn-group">
                                                         <button data-toggle="modal" data-target="#exampleModal" class="btn btn-primary icon" type="button" title="Add Cart"
-                                                                id="{{ $product->id }}" onclick="productView(this.id)" > <i class="fa fa-shopping-cart"></i> </button>
+                                                                id="{{ $product->id }}" onclick="productView(this.id)" {{ $product->product_qty <= 0 ? 'disabled' : '' }}> <i class="fa fa-shopping-cart"></i> </button>
                                                         <button class="btn btn-primary cart-btn" type="button">Add to cart</button>
                                                     </li>
 
@@ -926,7 +926,7 @@
                                                 <ul class="list-unstyled">
                                                     <li class="add-cart-button btn-group">
                                                         <button data-toggle="modal" data-target="#exampleModal" class="btn btn-primary icon" type="button" title="Add Cart"
-                                                                id="{{ $product->id }}" onclick="productView(this.id)" > <i class="fa fa-shopping-cart"></i> </button>
+                                                                id="{{ $product->id }}" onclick="productView(this.id)" {{ $product->product_qty <= 0 ? 'disabled' : '' }}> <i class="fa fa-shopping-cart"></i> </button>
                                                         <button class="btn btn-primary cart-btn" type="button">Add to cart</button>
                                                     </li>
 
@@ -1081,7 +1081,7 @@
                     <!-- /.section -->
                     <!-- ============================================== BLOG SLIDER : END ============================================== -->
 
-                    <!-- ============================================== FEATURED PRODUCTS ============================================== -->
+                    <!-- ============================================== Mobile Phones PRODUCTS ============================================== -->
                     <section class="section wow fadeInUp new-arriavls">
                         <h3 class="section-title">{{ (session()->get('language') == 'en') ? 'Mobile Phones' : 'التليفونات المحمولة' }}</h3>
                         <div class="owl-carousel home-owl-carousel custom-carousel owl-theme outer-top-xs">
@@ -1151,7 +1151,7 @@
                                                     <ul class="list-unstyled">
                                                         <li class="add-cart-button btn-group">
                                                             <button data-toggle="modal" data-target="#exampleModal" class="btn btn-primary icon" type="button" title="Add Cart"
-                                                                    id="{{ $product->id }}" onclick="productView(this.id)" > <i class="fa fa-shopping-cart"></i> </button>
+                                                                    id="{{ $product->id }}" onclick="productView(this.id)" {{ $product->product_qty <= 0 ? 'disabled' : '' }}> <i class="fa fa-shopping-cart"></i> </button>
                                                             <button class="btn btn-primary cart-btn" type="button">Add to cart</button>
                                                         </li>
 
