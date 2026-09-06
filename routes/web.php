@@ -109,7 +109,7 @@ Route::middleware(['auth:admin'])->group(function(){   // start middleware Admin
 
 
 
-        /// resume Sub Sun Category Routes
+        /// resume Sub Sub Category Routes
         Route::post('/sub/sub/store', [SubCategoryController::class, 'subSubCategoryStore'])->name('subsubcategory.store');
         Route::get('/sub/sub/edit/{id}', [SubCategoryController::class, 'subSubCategoryEdit'])->name('subsubcategory.edit');
         Route::post('/sub/sub/update/{id}', [SubCategoryController::class, 'subSubCategoryUpdate'])->name('subsubcategory.update');

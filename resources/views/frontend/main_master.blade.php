@@ -82,6 +82,7 @@
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
  <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+{{--    for rating stars review--}}
 <script>
     @if(Session::has('message'))
     var   type = "{{ Session::get('alert-type', 'info') }}"
@@ -477,7 +478,7 @@
                                     </td>
                                     <td class="col-md-2">
                                          <button data-toggle="modal" data-target="#exampleModal" class="btn btn-primary icon" type="button" title="Add Cart"
-                                              id="${ value.product_id }" onclick="productView(this.id)" >Add to cart  <i class="fa fa-shopping-cart"></i> </button>
+                                              id="${ value.product_id }" onclick="productView(this.id)" ${ value.product.product_qty <= 0 ? 'disabled' : '' }>Add to cart  <i class="fa fa-shopping-cart"></i> </button>
 
                                     </td>
                                     <td class="col-md-1 close-btn">
