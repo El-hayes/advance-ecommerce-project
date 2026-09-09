@@ -35,7 +35,7 @@
     .fb   { background:#1877f2; }
     .x    { background:#000; }
     .pin  { background:#e60023; }
-    /*.in   { background:#0a66c2; }*/
+    .lnked   { background:#0a66c2; }
     .wa   { background:#25d366; }
     .mail { background:#8c8c8c; }
 
@@ -68,7 +68,7 @@
         <i class="fab fa-pinterest-p"></i> Pin
     </a>
 
-    <a class="btn in"
+    <a class="btn lnked"
        href="https://www.linkedin.com/sharing/share-offsite/?url={{ $url }}"
        target="_blank">
         <i class="fab fa-linkedin-in"></i> Share
