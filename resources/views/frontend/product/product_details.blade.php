@@ -172,7 +172,7 @@
                                             <div class="col-sm-9">
                                                 <div class="stock-box">
                                                     <span class="value">
-                                                        @if($product->product_qty == 0)
+                                                        @if($product->product_qty <= 0)
                                                             <span class="text-danger">Not Available In Stock</span>
                                                         @else
                                                             <span class="text-success">Available In Stock</span>
@@ -211,15 +211,21 @@
 
                                             <div class="col-sm-6">
                                                 <div class="favorite-button m-t-10">
-                                                    <a class="btn btn-primary" data-toggle="tooltip" data-placement="right" title="Wishlist" href="#">
+                                                    <a class="btn btn-primary" data-toggle="tooltip" data-placement="right" title="Wishlist" id="{{ $product->id }}" onclick="addToWishList(this.id)">
                                                         <i class="fa fa-heart"></i>
                                                     </a>
-                                                    <a class="btn btn-primary" data-toggle="tooltip" data-placement="right" title="Add to Compare" href="#">
+                                                    <a class="btn btn-primary" data-toggle="tooltip" data-placement="right" title="Add to Compare Coming Soon" href="#">
                                                         <i class="fa fa-signal"></i>
                                                     </a>
-                                                    <a class="btn btn-primary" data-toggle="tooltip" data-placement="right" title="E-mail" href="#">
+                                                    <a class="btn btn-primary"
+                                                       data-toggle="tooltip"
+                                                       data-placement="right"
+                                                       title="E-mail"
+                                                       href="mailto:?subject={{ urlencode($product->product_name_en) }}&body={{ urlencode(url()->current()) }}">
+
                                                         <i class="fa fa-envelope"></i>
                                                     </a>
+
                                                 </div>
                                             </div>
 
@@ -302,18 +308,35 @@
                                                 <div class="cart-quantity">
                                                     <div class="quant-input">
                                                         <div class="arrows">
-                                                            <div class="arrow plus gradient"><span class="ir"><i class="icon fa fa-sort-asc"></i></span></div>
-                                                            <div class="arrow minus gradient"><span class="ir"><i class="icon fa fa-sort-desc"></i></span></div>
+                                                            <div class="arrow plus gradient" id="qty-plus">
+                    <span class="ir">
+                        <i class="icon fa fa-sort-asc"></i>
+                    </span>
+                                                            </div>
+
+                                                            <div class="arrow minus gradient" id="qty-minus">
+                    <span class="ir">
+                        <i class="icon fa fa-sort-desc"></i>
+                    </span>
+                                                            </div>
                                                         </div>
-                                                        <input type="text" id="qty" value="1" min="1">
+
+                                                        <input
+                                                            type="number"
+                                                            id="qty"
+                                                            name="qty"
+                                                            value="1"
+                                                            min="1"
+                                                        >
                                                     </div>
                                                 </div>
                                             </div>
 
+
                                             <input type="hidden" id="product_id" value="{{ $product->id }}">
 
                                             <div class="col-sm-7">
-                                                @if($product->product_qty == 0)
+                                                @if($product->product_qty <= 0)
                                                     <button disabled type="submit" onclick="addToCart()" class="btn btn-primary"><i class="fa fa-shopping-cart inner-right-vs"></i> ADD TO CART</button>
                                                 @else
                                                     <button type="submit" onclick="addToCart()" class="btn btn-primary"><i class="fa fa-shopping-cart inner-right-vs"></i> ADD TO CART</button>
@@ -627,25 +650,17 @@
                                         <div class="cart clearfix animate-effect">
                                             <div class="action">
                                                 <ul class="list-unstyled">
+
                                                     <li class="add-cart-button btn-group">
-                                                        <button class="btn btn-primary icon" data-toggle="dropdown" type="button">
-                                                            <i class="fa fa-shopping-cart"></i>
-                                                        </button>
+                                                        <button data-toggle="modal" data-target="#exampleModal" class="btn btn-primary icon" type="button" title="Add Cart"
+                                                                id="{{ $product->id }}" onclick="productView(this.id)" {{ $product->product_qty <= 0 ? 'disabled' : '' }}> <i class="fa fa-shopping-cart"></i> </button>
                                                         <button class="btn btn-primary cart-btn" type="button">Add to cart</button>
-
                                                     </li>
 
-                                                    <li class="lnk wishlist">
-                                                        <a class="add-to-cart" href="detail.html" title="Wishlist">
-                                                            <i class="icon fa fa-heart"></i>
-                                                        </a>
-                                                    </li>
-
-                                                    <li class="lnk">
-                                                        <a class="add-to-cart" href="detail.html" title="Compare">
-                                                            <i class="fa fa-signal"></i>
-                                                        </a>
-                                                    </li>
+                                                    <button  class="btn btn-primary icon" type="button" title="wishlist"
+                                                             id="{{ $product->id }}" onclick="addToWishList(this.id)" > <i class="fa fa-heart"></i> </button>
+                                                    <button class="btn btn-primary cart-btn" type="button">Add to cart</button>
+                                                    <li class="lnk"> <a data-toggle="tooltip" class="add-to-cart" href="{{ url('product/details/' . $product->id . '/' . $product->product_slug_en) }}" title="Compare"> <i class="fa fa-signal" aria-hidden="true"></i> </a> </li>
                                                 </ul>
                                             </div><!-- /.action -->
                                         </div><!-- /.cart -->
@@ -693,6 +708,38 @@
                     }
                 }, 200);
             }
+        </script>
+
+
+        <script type="text/javascript">
+            document.addEventListener('DOMContentLoaded', function () {
+
+                const qtyInput = document.getElementById('qty');
+                const plusBtn = document.getElementById('qty-plus');
+                const minusBtn = document.getElementById('qty-minus');
+
+                plusBtn.addEventListener('click', function () {
+                    let qty = parseInt(qtyInput.value) || 1;
+
+                    qtyInput.value = qty + 1;
+                });
+
+                minusBtn.addEventListener('click', function () {
+                    let qty = parseInt(qtyInput.value) || 1;
+
+                    if (qty > 1) {
+                        qtyInput.value = qty - 1;
+                    }
+                });
+
+                qtyInput.addEventListener('change', function () {
+                    if (this.value < 1 || isNaN(this.value)) {
+                        this.value = 1;
+                    }
+                });
+
+            });
+
         </script>
 @endsection
 
